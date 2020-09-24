@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Days</title>
+</head>
+<body>
+  <div class="main">
+    <div class="calendar">
+      <form action="/" method="post">
+        <label>Starting Week</label>
+        <br>
+        <input type="number" name="startingWeek">
+        <br>
+        <label>Ending Week</label>
+        <br>
+        <input type="number" name="endingWeek">
+        <br>
+        <br>
+        <button type="submit">Render Weeks</button>
+      </form>
+      <br>
+      <table>
+      <tr>
+        <th>Week #</th>
+        {% for weekDay in sevenDaysOfTheWeek %}
+          <th>{{ weekDay }}</th>
+        {% endfor %}
+      </tr>
+      {% for week in displayedDays %}
+        <tr>
+          <td>{{ startWeek + loop.index0 }}</td>
+          {% for day in week %}
+            <td>
+              {% for dae in day %}
+                {% if dae.type == "deadline" %}
+                  <div class="dae deadline">
+                    <div>[{{ dae.endTime }}]</div>
+                    <div>{{ dae.project }}:</div>
+                    <div class="line">{{ dae.title }}</div>
+                    <div class="hidden">
+                      <div>{{ dae.description }}</div>
+                      <button
+                        onclick="openEditDeadlineForm('{{ dae._id }}', '{{ dae.date }}', '{{ dae.endTime }}', '{{ dae.project }}', '{{ dae.title }}', '{{ dae.description }}')">
+                        Edit
+                      </button>
+                      <form action="/deadlines/{{ dae._id }}/delete/" method="post">
+                        <input type="submit" value="Delete">
+                      </form>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="dae event">
+                    <div>({{ dae.startTime }})</div>
+                    <div>{{ dae.project }}:</div>
+                    <div class="line">{{ dae.title }}</div>
+                    <div class="hidden">
+                      <div>{{ dae.description }}</div>
+                      <button
+                        onclick="openEditEventForm('{{ dae._id }}', '{{ dae.date }}', '{{ dae.startTime }}', '{{ dae.endTime }}', '{{ dae.project }}', '{{ dae.title }}', '{{ dae.description }}')"
+                        >
+                        Edit
+                      </button>
+                      <form action="/events/{{ dae._id }}/delete/" method="post">
+                        <input type="submit" value="Delete">
+                      </form>
+                    </div>
+                    <div>({{ dae.endTime }})</div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+
+    <div class="form">
+      <button onclick="openAddDeadlineForm()">Add Deadline</button>
+      <button onclick="openAddEventForm()">Add Event</button>
+
+      <div class="form-popup" id="deadline-form">
+        <h3 class="form-title"></h3>
+        <form action="" method="post" class="form-container">
+          <label>Date</label>
+          <br>
+          <input type="date" name="date" class="date" value="">
+          <br>
+          <label>Ending time</label>
+          <br>
+          <input type="time" name="endTime" class="endTime" value="">
+          <br>
+          <label>Project</label>
+          <br>
+          <input type="text" name="project" class="project" value="">
+          <br>
+          <label>Title</label>
+          <br>
+          <input type="text" name="title" class="title" value="">
+          <br>
+          <label>Description</label>
+          <br>
+          <input type="text" name="description" class="description" value="">
+          <br>
+          <br>
+          <button type="submit" class="btn"></button>
+          <button type="button" class="btn cancel" onclick="closeDeadlineForm()">
+            Close
+          </button>
+        </form>
+      </div>
+
+      <div class="form-popup" id="event-form">
+        <h3 class="form-title"></h3>
+        <form action="" method="post" class="form-container">
+          <label>Date</label>
+          <br>
+          <input type="date" name="date" class="date" value="">
+          <br>
+          <label>Start time</label>
+          <br>
+          <input type="time" name="startTime" class="startTime" value="">
+          <br>
+          <label>Ending time</label>
+          <br>
+          <input type="time" name="endTime" class="endTime" value="">
+          <br>
+          <label>Project</label>
+          <br>
+          <input type="text" name="project" class="project" value="">
+          <br>
+          <label>Title</label>
+          <br>
+          <input type="text" name="title" class="title" value="">
+          <br>
+          <label>Description</label>
+          <br>
+          <input type="text" name="description" class="description" value="">
+          <br>
+          <br>
+          <button type="submit" class="btn">Add Event</button>
+          <button type="button" class="btn cancel" onclick="closeEventForm()">
+            Close
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='deadlineForm.js') }}"></script>
+  <script src="{{ url_for('static', filename='eventForm.js') }}"></script>
+</body>
+</html>

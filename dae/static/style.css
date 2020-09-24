@@ -1,0 +1,84 @@
+table, th, td {
+  border: 1px solid black;
+}
+
+td {
+  vertical-align: top;
+}
+
+.dae {
+  text-decoration: none;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.line {
+  width: 15ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.dae:hover .line {
+  overflow: visible;
+  white-space: normal;
+}
+
+.dae:hover .hidden {
+  display: block;
+}
+
+.deadline {
+  color: red;
+}
+
+.event {
+  color: blue;
+}
+
+.main {
+  display: flex;
+}
+
+.calendar {
+  width: 1000px;
+}
+
+.form {
+  flex-grow: 1;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+}
+
+/* Add styles to the form container */
+.form-container {
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container {
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
