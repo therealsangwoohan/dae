@@ -1,4 +1,4 @@
-from datetime import date, timedelta, time, datetime
+from datetime import date, timedelta, datetime
 from dae.database import deadlines, events
 from operator import itemgetter
 
