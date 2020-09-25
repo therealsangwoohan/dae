@@ -18,7 +18,7 @@ def addEvent():
     return redirect("/")
 
 
-@app.route("/deadlines/<eventId>/edit/", methods=["POST"])
+@app.route("/events/<eventId>/edit/", methods=["POST"])
 def editEvent(eventId):
     aFilter = {"_id": ObjectId(eventId)}
     anUpdate = {"$set": {"date": request.form["date"],
