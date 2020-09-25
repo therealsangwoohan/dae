@@ -31,8 +31,9 @@
       {% for week in displayedDays %}
         <tr>
           <td>{{ startWeek + loop.index0 }}</td>
-          {% for day in week %}
+          {% for date, day in week %}
             <td>
+              <div class="date">{{ date }}</div>
               {% for dae in day %}
                 {% if dae.type == "deadline" %}
                   <div class="dae deadline">
@@ -106,7 +107,7 @@
           <br>
           <br>
           <button type="submit" class="btn"></button>
-          <button type="button" class="btn cancel" onclick="closeDeadlineForm()">
+          <button type="button" class="btn cancel" onclick="closeAnyDeadlineForm()">
             Close
           </button>
         </form>
@@ -141,7 +142,7 @@
           <br>
           <br>
           <button type="submit" class="btn">Add Event</button>
-          <button type="button" class="btn cancel" onclick="closeEventForm()">
+          <button type="button" class="btn cancel" onclick="closeAnyEventForm()">
             Close
           </button>
         </form>

@@ -24,7 +24,8 @@ def getDays(startWeek, endWeek):
     for _ in range(startWeek, endWeek + 1):
         aWeek = []
         for _ in range(7):
-            aWeek.append(getDay(curDate))
+            aWeek.append((shortenedDay(curDate.__str__()),
+                          getDay(curDate)))
             curDate += timedelta(days=1)
         displayedDays.append(aWeek)
     return displayedDays
@@ -60,9 +61,6 @@ def getDay(date):
     return day
 
 
-def getDateFromString(stringDate):
-    return datetime.strptime(stringDate, "%d/%m/%y").date()
-
-
-def getTimeFromString(stringTime):
-    return datetime.strptime(stringTime, "%H:%M").time()
+def shortenedDay(stringDate):
+    return stringDate[8] + stringDate[9] + "/" + \
+           stringDate[5] + stringDate[6]

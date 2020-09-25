@@ -82,3 +82,10 @@ td {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+.date {
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: monospace;
+}
