@@ -1,4 +1,5 @@
 from dae import app
 
-app.secret_key = "aSecretKey"
-app.run(debug=True)
+if __name__ == '__main__':
+    app.secret_key = "aSecretKey"
+    app.run()
