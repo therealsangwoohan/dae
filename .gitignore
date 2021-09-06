@@ -3,4 +3,4 @@ testing.py
 venv/
 __pycache__/
 dae/__pycache__
-dae/views/__pycache__
+dae/views/__pycache__/
